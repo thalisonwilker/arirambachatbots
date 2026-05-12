@@ -430,3 +430,12 @@ export const STATS = [
   { value: "99.9%", label: "Uptime dos sistemas" },
   { value: "48h", label: "Tempo médio de entrega de MVPs" },
 ];
+// ─── Benefícios ─────────────────────────────────────────────
+export const BENEFITS = [
+  { iconName: "clock", title: "Recuperação de Tempo", description: "Sua equipe deixa de fazer tarefas manuais repetitivas e foca no que realmente traz lucro." },
+  { iconName: "shield-alt", title: "Redução de Erros", description: "Processos automatizados não esquecem passos nem cometem erros de digitação ou cálculo." },
+  { iconName: "chart-area", title: "Escalabilidade Real", description: "Aumente seu volume de operações sem precisar contratar mais pessoas para tarefas básicas." },
+  { iconName: "rocket", title: "Velocidade de Entrega", description: "Sistemas e bots respondem em milissegundos, garantindo agilidade para o cliente final." },
+  { iconName: "users", title: "Foco no Cliente", description: "Libere seu time para o atendimento consultivo e estratégico, enquanto o bot resolve o trivial." },
+  { iconName: "eye", title: "Observabilidade Total", description: "Tenha logs e métricas de cada passo do seu negócio em dashboards de tempo real." },
+];
