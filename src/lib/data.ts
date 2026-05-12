@@ -439,3 +439,41 @@ export const BENEFITS = [
   { iconName: "users", title: "Foco no Cliente", description: "Libere seu time para o atendimento consultivo e estratégico, enquanto o bot resolve o trivial." },
   { iconName: "eye", title: "Observabilidade Total", description: "Tenha logs e métricas de cada passo do seu negócio em dashboards de tempo real." },
 ];
+// ─── Exemplos ───────────────────────────────────────────────
+export const EXAMPLES = [
+  {
+    iconPrefix: "fas",
+    iconName: "code-branch",
+    title: "Integração CRM x WhatsApp",
+    description: "Sincronização bidirecional de contatos e conversas entre HubSpot e WhatsApp Business.",
+    tags: ["HubSpot", "N8N", "API"]
+  },
+  {
+    iconPrefix: "fas",
+    iconName: "money-bill-wave",
+    title: "Checkout de Pagamentos",
+    description: "Sistema de pagamento customizado com split e emissão automática de NF-e via Webhook.",
+    tags: ["Stripe", "Asaas", "Financeiro"]
+  },
+  {
+    iconPrefix: "fas",
+    iconName: "chart-bar",
+    title: "Dashboard de Performance",
+    description: "Painel administrativo em Next.js monitorando 40+ métricas de bots em tempo real.",
+    tags: ["Dashboard", "PostgreSQL", "Next.js"]
+  },
+  {
+    iconPrefix: "fas",
+    iconName: "file-excel",
+    title: "Automação de Planilhas",
+    description: "Processamento de 10k+ linhas diárias de dados brutos para relatórios BI automatizados.",
+    tags: ["Python", "Pandas", "ETL"]
+  },
+  {
+    iconPrefix: "fas",
+    iconName: "rocket",
+    title: "MVP de Software House",
+    description: "Desenvolvimento rápido de plataforma de cursos online com área de membros e gestão.",
+    tags: ["SaaS", "LXP", "EdTech"]
+  }
+];
