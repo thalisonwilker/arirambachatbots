@@ -1,31 +1,40 @@
 // ============================================================
-// CONFIGURAÇÕES DO SITE — EDITE AQUI
+// CONFIGURAÇÕES DA MARCA — ARIRAMBA SYSTEMAS
 // ============================================================
 
-// Número do WhatsApp com código do país e DDD, sem espaços ou símbolos
-export const WHATSAPP_NUMBER = "5511999999999"; // ← SUBSTITUA pelo seu número
+export const WHATSAPP_NUMBER = "5511999999999";
 
-// Mensagem padrão pré-preenchida no WhatsApp
 export const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Olá, quero saber mais sobre os serviços da Ariramba Systemas"
+  "Olá, quero saber mais sobre as soluções da Ariramba Systemas"
 );
 
-// URL completa do WhatsApp
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 
-// Links de redes sociais
 export const SOCIAL_LINKS = {
-  linkedin: "https://linkedin.com/company/ariramba-systemas", // ← SUBSTITUA
-  github: "https://github.com/ariramba-systemas",             // ← SUBSTITUA
-  email: "contato@ariramba.com.br",                           // ← SUBSTITUA
-  telegram: "https://t.me/ariramba",                          // ← SUBSTITUA
+  linkedin: "https://linkedin.com/company/ariramba-systemas",
+  github: "https://github.com/thalisonwilker/arirambachatbots",
+  email: "contato@ariramba.com.br",
+  telegram: "https://t.me/ariramba",
 };
 
-// Informações da empresa
 export const BRAND = {
   name: "Ariramba Systemas",
   shortName: "Ariramba",
-  tagline: "Automação Inteligente & Integração de Sistemas",
+  tagline: "Automation & Software Studio",
   description:
-    "Especialistas em automação de processos, bots inteligentes, integrações com N8N, Evolution API e soluções sob medida para empresas que querem crescer sem aumentar a equipe.",
+    "Software house focada em automação inteligente, engenharia de software e soluções digitais modernas. Desenvolvemos sistemas, APIs, pipelines, aplicações web e automações para empresas que querem crescer com menos trabalho manual.",
+  keywords: [
+    "automação inteligente",
+    "software house",
+    "integração de sistemas",
+    "chatbots",
+    "APIs",
+    "desenvolvimento web",
+    "DevOps",
+    "pipelines",
+    "N8N",
+    "bots WhatsApp",
+    "web scraping",
+    "infraestrutura cloud",
+  ],
 };

@@ -1,50 +1,111 @@
-import { STEPS } from "@/lib/data";
+"use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComments, faFileExcel, faCode, faCheckCircle, faRocket, faLock, faHandshake } from "@fortawesome/free-solid-svg-icons";
-import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-
-const iconMap: Record<string, IconDefinition> = {
-  "comments": faComments, "file-excel": faFileExcel,
-  "code": faCode, "check-circle": faCheckCircle,
-};
+import { PROCESS_STEPS, STATS } from "@/lib/data";
 
 export function HowItWorks() {
   return (
-    <section id="como-funciona" style={{ padding: "6rem 0", position: "relative", overflow: "hidden", background: "linear-gradient(180deg, transparent, rgba(99,102,241,0.04), transparent)" }}>
-      <div className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
-        <div className="section-header">
-          <div className="section-label">Processo de trabalho</div>
-          <h2 className="section-title">Como funciona do <span className="gradient-text">inicio ao fim</span></h2>
-          <p className="section-subtitle">Um processo simples, transparente e orientado a resultado. Sem surpresas e sem jargao tecnico.</p>
-        </div>
-
-        <div className="grid-steps" style={{ position: "relative" }}>
-          <div aria-hidden="true" style={{ position: "absolute", top: "2rem", left: "12.5%", right: "12.5%", height: "1px", background: "linear-gradient(90deg, rgba(99,102,241,0.5), rgba(6,182,212,0.5))", zIndex: 0 }} className="hidden lg:block" />
-          {STEPS.map((step) => (
-            <div key={step.number} style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "0 0.5rem" }}>
-              <div style={{ width: "4rem", height: "4rem", borderRadius: "50%", background: "var(--bg-card)", border: "2px solid rgba(99,102,241,0.4)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem" }}>
-                <FontAwesomeIcon icon={iconMap[step.iconName] ?? faCode} style={{ color: "#818cf8", fontSize: "1.1rem" }} />
-              </div>
-              <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: "0.7rem", fontWeight: 700, color: "var(--text-muted)", marginBottom: "0.5rem" }}>{step.number}</div>
-              <h3 style={{ fontWeight: 700, fontSize: "1rem", marginBottom: "0.75rem", color: "var(--text-primary)" }}>{step.title}</h3>
-              <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.7 }}>{step.description}</p>
+    <section id="como-funciona" className="how-it-works-section">
+      <div className="section">
+        {/* Stats strip */}
+        <div className="stats-strip animate-fade-in">
+          {STATS.map((stat) => (
+            <div key={stat.label} className="stat-card">
+              <div className="stat-value">{stat.value}</div>
+              <div className="stat-label">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        <div style={{ marginTop: "4rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
-          {[
-            { icon: faRocket, text: "Entrega rapida e sem enrolacao" },
-            { icon: faLock, text: "Codigo limpo e documentado" },
-            { icon: faHandshake, text: "Comunicacao direta e transparente" },
-          ].map((item) => (
-            <div key={item.text} style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "1rem 1.25rem", background: "var(--bg-card)", border: "1px solid var(--border-color)", borderRadius: "0.75rem" }}>
-              <FontAwesomeIcon icon={item.icon} style={{ color: "#818cf8", fontSize: "1rem", flexShrink: 0 }} />
-              <span style={{ fontSize: "0.9rem", color: "var(--text-secondary)", fontWeight: 500 }}>{item.text}</span>
+        {/* Header */}
+        <div className="section-header">
+          <div className="section-label">Pipeline de Entrega</div>
+          <h2 className="section-title">
+            Do diagnóstico à <br />
+            <span className="gradient-text">automação em produção</span>
+          </h2>
+          <p className="section-subtitle">
+            Um processo claro, técnico e focado em converter seus problemas operacionais em fluxos eficientes.
+          </p>
+        </div>
+
+        {/* Process Steps */}
+        <div className="process-grid">
+          {PROCESS_STEPS.map((step, i) => (
+            <div key={step.number} className="process-step animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div className="step-top">
+                <div className="icon-box step-icon">
+                  <FontAwesomeIcon icon={step.icon} />
+                </div>
+                <span className="step-number">{step.number}</span>
+              </div>
+              <div className="step-content">
+                <h3 className="step-title">{step.title}</h3>
+                <p className="step-desc">{step.description}</p>
+              </div>
             </div>
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        .how-it-works-section { padding: 8rem 0; position: relative; }
+        
+        .stats-strip { 
+          display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+          gap: 1px; background: var(--border-color); border: 1px solid var(--border-color); 
+          border-radius: var(--radius-2xl); overflow: hidden; margin-bottom: 8rem;
+          box-shadow: 0 20px 40px -20px rgba(99, 102, 241, 0.15);
+        }
+        .stat-card { 
+          padding: 3rem 2rem; background: var(--bg-card); text-align: center; 
+          transition: background 0.3s;
+        }
+        .stat-card:hover { background: var(--bg-card-hover); }
+        .stat-value { font-size: 3rem; font-weight: 900; letter-spacing: -0.04em; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.25rem; }
+        .stat-label { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        .process-grid { 
+          display: grid; 
+          grid-template-columns: repeat(4, 1fr); 
+          gap: 1.5rem; margin-top: 4rem;
+        }
+
+        @media (max-width: 1200px) {
+          .process-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+          .process-grid { grid-template-columns: 1fr; }
+        }
+        .process-step { 
+          padding: 2.5rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); 
+          border-radius: var(--radius-xl); transition: all 0.3s; position: relative; overflow: hidden;
+        }
+        .process-step:hover { background: rgba(99,102,241,0.04); border-color: var(--brand-primary-light); transform: translateY(-5px); }
+        .process-step::after {
+          content: ''; position: absolute; top: 0; right: 0; width: 60px; height: 60px;
+          background: radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.1), transparent 70%);
+        }
+
+        .step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+        .step-icon { 
+          background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25); 
+          color: var(--brand-primary-light); width: 3rem; height: 3rem; fontSize: 1.125rem;
+        }
+        .step-number { 
+          font-size: 2.5rem; font-weight: 900; color: rgba(255,255,255,0.03); 
+          font-family: 'JetBrains Mono', monospace; letter-spacing: -0.05em; 
+        }
+
+        .step-title { font-size: 1.125rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .step-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; }
+
+        @media (max-width: 768px) {
+          .stats-strip { margin-bottom: 4rem; grid-template-columns: 1fr 1fr; }
+          .process-grid { gap: 1rem; }
+          .process-step { padding: 1.5rem; }
+        }
+      `}</style>
     </section>
   );
 }

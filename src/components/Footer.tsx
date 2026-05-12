@@ -1,112 +1,122 @@
 "use client";
-import { WHATSAPP_URL, SOCIAL_LINKS } from "@/lib/constants";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRobot, faEnvelope, faChevronRight, faBolt } from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp, faTelegram, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faRobot } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp, faGithub, faTelegram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { BRAND, SOCIAL_LINKS, WHATSAPP_URL } from "@/lib/constants";
 
-const footerServices = [
-  "WhatsApp Automation com N8N",
-  "Bots Inteligentes",
-  "Integracoes com APIs",
-  "Automacao de Planilhas",
-  "DevOps e Deploys",
-  "Dashboards e Relatorios",
-];
+const FOOTER_LINKS = {
+  Serviços: [
+    { label: "Automação WhatsApp", href: "#servicos" },
+    { label: "Desenvolvimento Web", href: "#servicos" },
+    { label: "Pipelines & DevOps", href: "#servicos" },
+    { label: "Landing Pages", href: "#servicos" },
+    { label: "Web Scraping", href: "#servicos" },
+  ],
+  Soluções: [
+    { label: "Bots Inteligentes", href: "#solucoes" },
+    { label: "APIs & Integrações", href: "#solucoes" },
+    { label: "Dashboards", href: "#solucoes" },
+    { label: "Cloud & Infraestrutura", href: "#solucoes" },
+    { label: "ETL & Dados", href: "#solucoes" },
+  ],
+  Empresa: [
+    { label: "Sobre nós", href: "#sobre" },
+    { label: "Demos ao vivo", href: "#demos" },
+    { label: "Catálogo", href: "#catalogo" },
+    { label: "Como funciona", href: "#como-funciona" },
+    { label: "Contato", href: WHATSAPP_URL },
+  ],
+};
 
 export function Footer() {
-  const year = new Date().getFullYear();
-
-  const socialLinks = [
-    { href: SOCIAL_LINKS.linkedin, icon: faLinkedin, label: "LinkedIn", color: "#818cf8" },
-    { href: SOCIAL_LINKS.github, icon: faGithub, label: "GitHub", color: "#818cf8" },
-    { href: SOCIAL_LINKS.telegram, icon: faTelegram, label: "Telegram", color: "#29b6f6" },
-    { href: WHATSAPP_URL, icon: faWhatsapp, label: "WhatsApp", color: "#25d366" },
-  ];
-
   return (
-    <footer style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border-color)", padding: "4rem 1.5rem 2rem" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2.5rem", marginBottom: "3rem" }}>
-          {/* Brand */}
+    <footer style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "4rem", paddingBottom: "2rem" }}>
+      <div className="container">
+        <div style={{ display: "grid", gridTemplateColumns: "1.5fr repeat(3, 1fr)", gap: "3rem", marginBottom: "3rem" }} className="md:grid">
+          {/* Brand col */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1rem" }}>
-              <div style={{ width: "2rem", height: "2rem", borderRadius: "0.5rem", background: "linear-gradient(135deg, #6366f1, #8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <FontAwesomeIcon icon={faRobot} style={{ color: "white", fontSize: "0.75rem" }} />
+            <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1rem" }}>
+              <div
+                style={{
+                  width: 34, height: 34, borderRadius: "0.5rem",
+                  background: "linear-gradient(135deg, #6366f1, #06b6d4)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: "0.9rem", color: "#fff",
+                }}
+              >
+                <FontAwesomeIcon icon={faRobot} />
               </div>
-              <span style={{ fontWeight: 700, fontSize: "1rem", color: "var(--text-primary)" }}>
-                Ariramba<span className="gradient-text">Systemas</span>
+              <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: "var(--text-primary)" }}>
+                {BRAND.shortName}<span style={{ color: "var(--brand-primary-light)" }}>Systemas</span>
               </span>
             </div>
-            <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "1.25rem" }}>
-              Automacao inteligente, bots e integracoes para empresas que querem crescer sem aumentar a equipe.
+            <p style={{ fontSize: "0.8125rem", color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: "1.25rem", maxWidth: "240px" }}>
+              {BRAND.tagline}. Software house especializada em automação inteligente e soluções digitais.
             </p>
-            <div style={{ display: "flex", gap: "0.6rem" }}>
-              {socialLinks.map(({ href, icon, label, color }) => (
+            {/* Social */}
+            <div style={{ display: "flex", gap: "0.75rem" }}>
+              {[
+                { icon: faWhatsapp, href: WHATSAPP_URL, label: "WhatsApp" },
+                { icon: faGithub, href: SOCIAL_LINKS.github, label: "GitHub" },
+                { icon: faTelegram, href: SOCIAL_LINKS.telegram, label: "Telegram" },
+                { icon: faLinkedin, href: SOCIAL_LINKS.linkedin, label: "LinkedIn" },
+              ].map(({ icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  style={{ width: "2.25rem", height: "2.25rem", borderRadius: "0.5rem", background: "var(--bg-card)", border: "1px solid var(--border-color)", display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none", transition: "all 0.2s", color: "var(--text-secondary)" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = color; (e.currentTarget as HTMLElement).style.color = color; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border-color)"; (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)"; }}
+                  className="social-icon-btn"
+                  style={{
+                    width: 36, height: 36,
+                    borderRadius: "0.5rem",
+                    border: "1px solid var(--border-color)",
+                    background: "var(--bg-card)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "var(--text-secondary)",
+                    fontSize: "0.875rem",
+                    textDecoration: "none",
+                    transition: "all 0.2s",
+                  }}
                 >
-                  <FontAwesomeIcon icon={icon} style={{ fontSize: "0.85rem" }} />
+                  <FontAwesomeIcon icon={icon} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 style={{ fontWeight: 700, fontSize: "0.875rem", color: "var(--text-primary)", marginBottom: "1.25rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Servicos</h4>
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
-              {footerServices.map((s) => (
-                <li key={s}>
-                  <a href="#servicos" style={{ fontSize: "0.875rem", color: "var(--text-muted)", textDecoration: "none", display: "flex", alignItems: "center", gap: "0.4rem", transition: "color 0.2s" }}
-                    onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--brand-primary-light)")}
-                    onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--text-muted)")}>
-                    <FontAwesomeIcon icon={faChevronRight} style={{ fontSize: "0.6rem", opacity: 0.5 }} />
-                    {s}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 style={{ fontWeight: 700, fontSize: "0.875rem", color: "var(--text-primary)", marginBottom: "1.25rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Contato</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontSize: "0.875rem", color: "#25d366", textDecoration: "none" }}>
-                <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
-              </a>
-              <a href={`mailto:${SOCIAL_LINKS.email}`} style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontSize: "0.875rem", color: "var(--text-muted)", textDecoration: "none" }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--brand-primary-light)")}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--text-muted)")}>
-                <FontAwesomeIcon icon={faEnvelope} /> {SOCIAL_LINKS.email}
-              </a>
-              <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontSize: "0.875rem", color: "var(--text-muted)", textDecoration: "none" }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#29b6f6")}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--text-muted)")}>
-                <FontAwesomeIcon icon={faTelegram} /> Telegram
-              </a>
-              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontSize: "0.875rem", color: "var(--text-muted)", textDecoration: "none" }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--brand-primary-light)")}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--text-muted)")}>
-                <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
-              </a>
+          {/* Link columns */}
+          {Object.entries(FOOTER_LINKS).map(([group, links]) => (
+            <div key={group}>
+              <div style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "1rem" }}>
+                {group}
+              </div>
+              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
+                {links.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link href={href} className="footer-link">{label}</Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          ))}
         </div>
 
-        <div style={{ paddingTop: "1.5rem", borderTop: "1px solid var(--border-color)", display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "space-between", alignItems: "center" }}>
-          <p style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>&copy; {year} Ariramba Systemas. Todos os direitos reservados.</p>
-          <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", display: "flex", alignItems: "center", gap: "0.4rem" }}>
-            <FontAwesomeIcon icon={faBolt} style={{ color: "#6366f1" }} />
-            Feito com automacao e muito cafe
-          </p>
+        {/* Bottom bar */}
+        <div className="divider" style={{ marginBottom: "1.5rem" }} />
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}>
+          <span style={{ fontSize: "0.8125rem", color: "var(--text-muted)" }}>
+            © {new Date().getFullYear()} {BRAND.name}. Todos os direitos reservados.
+          </span>
+          <a
+            href={`mailto:${SOCIAL_LINKS.email}`}
+            style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.8125rem", color: "var(--text-secondary)", textDecoration: "none" }}
+          >
+            <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: "0.75rem" }} />
+            {SOCIAL_LINKS.email}
+          </a>
         </div>
       </div>
     </footer>

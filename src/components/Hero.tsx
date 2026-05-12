@@ -1,81 +1,213 @@
-import { WHATSAPP_URL } from "@/lib/constants";
+"use client";
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { 
+  faBolt, faArrowRight, faCloudDownloadAlt, faBrain, 
+  faProjectDiagram, faPaperPlane, faCheckCircle, faMicrochip 
+} from "@fortawesome/free-solid-svg-icons";
+import { WHATSAPP_URL } from '@/lib/constants';
 
 export function Hero() {
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % 4);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const pipelineSteps = [
+    { label: 'Ingestion', icon: faCloudDownloadAlt, color: '#818cf8' },
+    { label: 'AI Process', icon: faBrain, color: '#c084fc' },
+    { label: 'Integration', icon: faProjectDiagram, color: '#38bdf8' },
+    { label: 'Delivery', icon: faPaperPlane, color: '#34d399' },
+  ];
+
   return (
-    <section
-      id="inicio"
-      style={{ minHeight: "calc(100vh - 4rem)", display: "flex", alignItems: "center", position: "relative", overflow: "hidden" }}
-    >
-      <div aria-hidden="true" style={{ position: "absolute", top: "-10%", left: "-5%", width: "700px", height: "700px", background: "radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 65%)", pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{ position: "absolute", bottom: "-10%", right: "-5%", width: "600px", height: "600px", background: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 65%)", pointerEvents: "none" }} />
-      <div className="bg-grid" aria-hidden="true" style={{ position: "absolute", inset: 0, opacity: 0.6, pointerEvents: "none" }} />
+    <section className="hero">
+      <div className="hero-glow"></div>
+      
+      <div className="container">
+        <div className="hero-grid">
+          {/* Content Left */}
+          <div className="hero-content animate-fade-up">
+            <span className="hero-tag">
+              <FontAwesomeIcon icon={faBolt} className="mr-2" /> Automation Studio
+            </span>
+            
+            <h1 className="hero-title">
+              Automação Inteligente & <br />
+              <span className="gradient-text">Soluções Digitais</span>
+            </h1>
 
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "6rem 1.5rem", position: "relative", zIndex: 1, width: "100%" }}>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.4rem 1rem", background: "rgba(37,211,102,0.1)", border: "1px solid rgba(37,211,102,0.25)", borderRadius: "100px", fontSize: "0.8rem", fontWeight: 600, color: "#25d366", marginBottom: "2rem" }}>
-          <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#25d366", display: "inline-block", animation: "pulse-green 2s infinite" }} />
-          Disponivel para novos projetos
-        </div>
+            <p className="hero-desc">
+              Transformamos operações manuais em fluxos de alta performance. 
+              Da engenharia de software ao DevOps, entregamos tecnologia que escala sua empresa.
+            </p>
 
-        <h1 style={{ fontSize: "clamp(2rem, 5.5vw, 3.75rem)", fontWeight: 900, lineHeight: 1.1, marginBottom: "1.5rem", maxWidth: "860px", letterSpacing: "-0.02em" }}>
-          Automatizamos processos e integramos sistemas{" "}
-          <span className="gradient-text">para sua empresa crescer sem aumentar a equipe</span>
-        </h1>
-
-        <p style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)", color: "var(--text-secondary)", maxWidth: "640px", lineHeight: 1.75, marginBottom: "2.5rem" }}>
-          Bots inteligentes para WhatsApp e Telegram, fluxos com{" "}
-          <strong style={{ color: "var(--text-primary)" }}>N8N e Evolution API</strong>,
-          integracoes com APIs e solucoes sob medida — sem trabalho manual, sem erro humano.
-        </p>
-
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginBottom: "4rem" }}>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-whatsapp" style={{ fontSize: "1rem", padding: "1rem 2rem" }}>
-            <FontAwesomeIcon icon={faWhatsapp} style={{ fontSize: "1.1rem" }} />
-            Falar no WhatsApp
-          </a>
-          <a href="#servicos" className="btn-outline" style={{ fontSize: "1rem", padding: "1rem 2rem" }}>
-            Ver servicos
-            <FontAwesomeIcon icon={faChevronRight} style={{ fontSize: "0.85rem" }} />
-          </a>
-        </div>
-
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "2.5rem" }}>
-          {[
-            { value: "N8N", label: "Automacao visual" },
-            { value: "Evolution API", label: "WhatsApp oficial" },
-            { value: "100%", label: "Suporte pos-entrega" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div style={{ fontSize: "1.5rem", fontWeight: 800, background: "var(--gradient-text)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", lineHeight: 1, marginBottom: "0.25rem" }}>
-                {s.value}
-              </div>
-              <div style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>{s.label}</div>
+            <div className="hero-actions">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                Começar agora <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+              </a>
+              <a href="#servicos" className="btn btn-secondary">
+                Ver serviços
+              </a>
             </div>
-          ))}
-        </div>
 
-        <div aria-hidden="true" style={{ position: "absolute", right: "0", top: "50%", transform: "translateY(-50%)", display: "none", width: "360px", background: "var(--bg-card)", border: "1px solid var(--border-color)", borderRadius: "1rem", overflow: "hidden", animation: "float 4s ease-in-out infinite" }} className="lg:block">
-          <div style={{ background: "#1a1a35", padding: "0.75rem 1rem", display: "flex", gap: "0.4rem", alignItems: "center", borderBottom: "1px solid var(--border-color)" }}>
-            {["#ff5f57","#ffbd2e","#28c840"].map((c) => <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, display: "block" }} />)}
-            <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: "0.7rem", color: "var(--text-muted)", marginLeft: "0.5rem" }}>n8n-workflow.json</span>
+            {/* Quick Metrics - THE "SQUARES" SIDE BY SIDE */}
+            <div className="hero-metrics-row">
+              <div className="metric-box">
+                <div className="metric-value">100%</div>
+                <div className="metric-label">Uptime</div>
+              </div>
+              <div className="metric-box">
+                <div className="metric-value">350k+</div>
+                <div className="metric-label">Requests/Dia</div>
+              </div>
+              <div className="metric-box">
+                <div className="metric-value">40%</div>
+                <div className="metric-label">Efficiency</div>
+              </div>
+            </div>
           </div>
-          <div style={{ padding: "1.25rem", fontFamily: "JetBrains Mono, monospace", fontSize: "0.8rem", lineHeight: 1.7 }}>
-            <div style={{ color: "#6366f1" }}># N8N + Evolution API rodando...</div>
-            <div style={{ color: "#94a3b8" }}>&gt; Webhook recebido</div>
-            <div style={{ color: "#25d366" }}>&#x2713; Mensagem processada</div>
-            <div style={{ color: "#94a3b8" }}>&gt; Consultando CRM...</div>
-            <div style={{ color: "#25d366" }}>&#x2713; 38 leads sincronizados</div>
-            <div style={{ color: "#94a3b8" }}>&gt; Enviando WhatsApp...</div>
-            <div style={{ color: "#8b5cf6", marginTop: "0.5rem" }}>&#x26A1; Bot respondeu em 0.3s</div>
+
+          {/* Visual Right */}
+          <div className="hero-visual">
+            <div className="main-display-card animate-fade-in">
+              <div className="card-header">
+                <div className="window-controls">
+                  <span></span><span></span><span></span>
+                </div>
+                <div className="card-title-tab">System Pipeline Monitor</div>
+              </div>
+              
+              <div className="card-content">
+                {/* Horizontal Pipeline Steps */}
+                <div className="horizontal-pipeline">
+                  {pipelineSteps.map((step, idx) => (
+                    <div key={idx} className={`pipe-step ${activeStep === idx ? 'active' : ''}`}>
+                      <div className="step-icon-wrap" style={{ color: activeStep === idx ? step.color : 'rgba(255,255,255,0.2)' }}>
+                        <FontAwesomeIcon icon={step.icon} />
+                      </div>
+                      <div className="step-tag">{step.label}</div>
+                      {idx < pipelineSteps.length - 1 && (
+                        <div className={`pipe-connector ${activeStep > idx ? 'completed' : ''}`}></div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* System Status Row - Floating metrics now side-by-side */}
+                <div className="status-grid">
+                  <div className="status-item health">
+                    <div className="status-icon"><FontAwesomeIcon icon={faCheckCircle} /></div>
+                    <div className="status-info">
+                      <div className="status-label">Health</div>
+                      <div className="status-val">Optimal</div>
+                    </div>
+                  </div>
+                  <div className="status-item intel">
+                    <div className="status-icon"><FontAwesomeIcon icon={faMicrochip} /></div>
+                    <div className="status-info">
+                      <div className="status-label">Engine</div>
+                      <div className="status-val">AI-Active</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Background flow decoration */}
+            <div className="visual-deco-glow"></div>
           </div>
         </div>
       </div>
 
-      <a href="#servicos" aria-label="Ver servicos" style={{ position: "absolute", bottom: "2rem", left: "50%", transform: "translateX(-50%)", color: "var(--text-muted)", animation: "float 2s ease-in-out infinite", textDecoration: "none" }}>
-        <FontAwesomeIcon icon={faArrowDown} />
-      </a>
+      <style jsx>{`
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px; overflow: hidden; background: #05050f; }
+        .hero-glow { position: absolute; top: -10%; right: -10%; width: 60%; height: 60%; background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%); pointer-events: none; }
+        
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; z-index: 2; }
+        
+        .hero-tag { display: inline-flex; align-items: center; padding: 0.5rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; color: var(--brand-primary-light); font-size: 0.75rem; font-weight: 800; margin-bottom: 2rem; letter-spacing: 0.05em; text-transform: uppercase; }
+        .hero-title { font-size: 4rem; line-height: 1.1; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 2rem; color: #fff; }
+        .hero-desc { font-size: 1.25rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 3rem; max-width: 580px; }
+        .hero-actions { display: flex; gap: 1.25rem; margin-bottom: 4rem; }
+        
+        /* THE SQUARES SIDE BY SIDE */
+        .hero-metrics-row { display: flex; gap: 1.5rem; }
+        .metric-box { 
+          flex: 1; padding: 1.5rem; background: rgba(255,255,255,0.02); 
+          border: 1px solid rgba(255,255,255,0.05); border-radius: 1.25rem;
+          transition: all 0.3s;
+        }
+        .metric-box:hover { background: rgba(99,102,241,0.05); border-color: rgba(99,102,241,0.2); transform: translateY(-3px); }
+        .metric-value { font-size: 1.75rem; font-weight: 900; color: #fff; margin-bottom: 0.25rem; }
+        .metric-label { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        .hero-visual { position: relative; width: 100%; }
+        .main-display-card { 
+          background: rgba(15, 15, 35, 0.6); backdrop-filter: blur(20px); 
+          border: 1px solid rgba(255,255,255,0.1); border-radius: 2rem; 
+          box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8); overflow: hidden; 
+        }
+        .card-header { padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .window-controls { display: flex; gap: 8px; }
+        .window-controls span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+        .card-title-tab { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+        
+        .card-content { padding: 2.5rem; display: flex; flex-direction: column; gap: 3rem; }
+
+        /* Horizontal Pipeline */
+        .horizontal-pipeline { display: flex; align-items: center; justify-content: space-between; position: relative; }
+        .pipe-step { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; position: relative; z-index: 2; flex: 1; }
+        .step-icon-wrap { 
+          width: 50px; height: 50px; border-radius: 14px; 
+          background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+          display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+          transition: all 0.5s;
+        }
+        .pipe-step.active .step-icon-wrap { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); transform: scale(1.1); box-shadow: 0 0 20px rgba(99,102,241,0.2); }
+        .step-tag { font-size: 0.65rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        .pipe-connector { 
+          position: absolute; top: 25px; left: calc(50% + 30px); width: calc(100% - 60px); 
+          height: 2px; background: rgba(255,255,255,0.05); z-index: 1;
+        }
+        .pipe-connector.completed { background: linear-gradient(90deg, var(--brand-primary), transparent); }
+
+        /* Status Grid - Side by Side internal cards */
+        .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .status-item { 
+          display: flex; align-items: center; gap: 1rem; padding: 1.25rem; 
+          border-radius: 1.25rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+        }
+        .status-icon { font-size: 1.25rem; }
+        .health .status-icon { color: #34d399; }
+        .intel .status-icon { color: #818cf8; }
+        .status-label { font-size: 0.6rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; }
+        .status-val { font-size: 0.875rem; font-weight: 700; color: #fff; }
+
+        .visual-deco-glow { position: absolute; bottom: -10%; left: 10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%); filter: blur(40px); pointer-events: none; }
+
+        @media (max-width: 1200px) {
+          .hero-title { font-size: 3rem; }
+          .hero-grid { gap: 4rem; }
+        }
+        @media (max-width: 1024px) {
+          .hero-grid { grid-template-columns: 1fr; text-align: center; }
+          .hero-content { display: flex; flex-direction: column; align-items: center; }
+          .hero-metrics-row { width: 100%; max-width: 500px; }
+          .hero-actions { justify-content: center; }
+        }
+        @media (max-width: 640px) {
+          .hero-title { font-size: 2.5rem; }
+          .hero-metrics-row { flex-direction: column; gap: 1rem; }
+          .hero-actions { flex-direction: column; width: 100%; }
+          .status-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
     </section>
   );
 }

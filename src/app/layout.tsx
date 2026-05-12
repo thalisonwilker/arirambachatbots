@@ -1,45 +1,61 @@
 import type { Metadata } from "next";
-import "@/lib/fa"; // register on server side
-import "./globals.css";
-import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { BRAND } from "@/lib/constants";
 import { FAProvider } from "@/components/FAProvider";
+import "./globals.css";
+
+config.autoAddCss = false;
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Ariramba Systemas | Automacao, Bots e Integracoes com N8N",
+  title: {
+    default: `${BRAND.name} | Automation & Software Studio`,
+    template: `%s | ${BRAND.name}`,
+  },
   description:
-    "Especializados em automacao de processos com N8N, Evolution API, bots para WhatsApp e Telegram, integracao de sistemas e DevOps para empresas que querem crescer com eficiencia.",
-  keywords: [
-    "automacao de processos",
-    "N8N",
-    "Evolution API",
-    "bots WhatsApp",
-    "bots Telegram",
-    "integracao de sistemas",
-    "API",
-    "DevOps",
-    "Ariramba Systemas",
-  ],
+    "Software house especializada em automação inteligente, integração de sistemas, bots, APIs, pipelines, DevOps e soluções digitais sob medida para empresas modernas.",
+  keywords: BRAND.keywords,
+  authors: [{ name: BRAND.name, url: "https://ariramba.com.br" }],
+  creator: BRAND.name,
+  publisher: BRAND.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   openGraph: {
-    title: "Ariramba Systemas | Automacao e Bots Inteligentes",
-    description:
-      "Automatizamos processos e integramos sistemas para sua empresa crescer sem aumentar a equipe.",
     type: "website",
     locale: "pt_BR",
+    url: "https://ariramba.com.br",
+    siteName: BRAND.name,
+    title: `${BRAND.name} | Automation & Software Studio`,
+    description: BRAND.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${BRAND.name} | Automation & Software Studio`,
+    description: BRAND.description,
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body>
-        <FAProvider>
-          {children}
-          <WhatsAppFloat />
-        </FAProvider>
+      <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
+        <FAProvider>{children}</FAProvider>
       </body>
     </html>
   );
