@@ -1,13 +1,13 @@
-/** @type {import('next').NextConfig} */
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
 const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
   },
-  basePath: isGithubActions ? '/arirambachatbots' : '',
-  assetPrefix: isGithubActions ? '/arirambachatbots/' : '',
+  // Como há um CNAME (arirambachatbots.com.br), o site é servido na raiz do domínio.
+  // Não precisamos de basePath ou assetPrefix.
+  basePath: '',
+  assetPrefix: '',
 };
 
 export default nextConfig;
