@@ -1,8 +1,11 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { Problems } from "@/components/Problems";
 import { Services } from "@/components/Services";
+import { Benefits } from "@/components/Benefits";
 import { BotDemo } from "@/components/BotDemo";
 import { BotCatalog } from "@/components/BotCatalog";
+import { Examples } from "@/components/Examples";
 import { HowItWorks } from "@/components/HowItWorks";
 import { About } from "@/components/About";
 import { CTA } from "@/components/CTA";
@@ -16,23 +19,32 @@ export default function Home() {
       
       {/* Hero: Posicionamento e Impacto Imediato */}
       <Hero />
+
+      {/* Problems: Agitação do problema e dor do cliente */}
+      <Problems />
       
       {/* Services: Categorias de Atuação (Software House) */}
       <Services />
 
-      {/* Demos: Prova Social e Técnica Interativa */}
+      {/* Benefits: Proposta de valor e resultados reais */}
+      <Benefits />
+
+      {/* Demos: Prova Técnica Interativa */}
       <BotDemo />
 
-      {/* Catalog: Itens Prontos (Bots, Integrações, APIs) */}
+      {/* Catalog: Soluções Prontas e Orçáveis */}
       <BotCatalog />
 
-      {/* How it Works: Transparência no Processo */}
+      {/* Examples: Cases e demonstração de versatilidade */}
+      <Examples />
+
+      {/* How it Works: Transparência e Pipeline de Trabalho */}
       <HowItWorks />
 
-      {/* About: Visão, Stack e Identidade */}
+      {/* About: Visão Técnica, Stack e Identidade */}
       <About />
 
-      {/* CTA Final: Conversão para WhatsApp/Email */}
+      {/* CTA Final: Conversão Direta */}
       <CTA />
 
       <Footer />

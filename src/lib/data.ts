@@ -477,3 +477,12 @@ export const EXAMPLES = [
     tags: ["SaaS", "LXP", "EdTech"]
   }
 ];
+// ─── Problemas ──────────────────────────────────────────────
+export const PROBLEMS = [
+  { iconName: "clock", title: "Tarefas Manuais Repetitivas", description: "Perda de tempo precioso preenchendo planilhas, enviando e-mails padrão ou copiando dados entre sistemas." },
+  { iconName: "link", title: "Sistemas Desconectados", description: "Informações espalhadas por várias ferramentas que não se conversam, gerando retrabalho e erros." },
+  { iconName: "whatsapp", title: "Atendimento Lento", description: "Clientes esperando horas por uma resposta simples no WhatsApp que poderia ser automatizada com IA." },
+  { iconName: "table", title: "Caos nas Planilhas", description: "Planilhas gigantescas, lentas e propensas a erros humanos que travam a operação do seu negócio." },
+  { iconName: "chart-line", title: "Falta de Dados", description: "Dificuldade em visualizar o desempenho real da sua empresa por falta de relatórios automatizados." },
+  { iconName: "cog", title: "Processos Engessados", description: "Fluxos de trabalho que dependem de poucas pessoas e não escalam quando o volume de pedidos aumenta." },
+];

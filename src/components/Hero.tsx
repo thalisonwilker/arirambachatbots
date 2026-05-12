@@ -55,7 +55,7 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Quick Metrics - THE "SQUARES" SIDE BY SIDE */}
+            {/* Quick Metrics */}
             <div className="hero-metrics-row">
               <div className="metric-box">
                 <div className="metric-value">100%</div>
@@ -98,13 +98,13 @@ export function Hero() {
                   ))}
                 </div>
 
-                {/* System Status Row - Floating metrics now side-by-side */}
+                {/* System Status Row */}
                 <div className="status-grid">
                   <div className="status-item health">
                     <div className="status-icon"><FontAwesomeIcon icon={faCheckCircle} /></div>
                     <div className="status-info">
-                      <div className="status-label">Health</div>
-                      <div className="status-val">Optimal</div>
+                      <div className="status-label">Network</div>
+                      <div className="status-val">Stable</div>
                     </div>
                   </div>
                   <div className="status-item intel">
@@ -118,7 +118,6 @@ export function Hero() {
               </div>
             </div>
             
-            {/* Background flow decoration */}
             <div className="visual-deco-glow"></div>
           </div>
         </div>
@@ -135,7 +134,6 @@ export function Hero() {
         .hero-desc { font-size: 1.25rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 3rem; max-width: 580px; }
         .hero-actions { display: flex; gap: 1.25rem; margin-bottom: 4rem; }
         
-        /* THE SQUARES SIDE BY SIDE */
         .hero-metrics-row { display: flex; gap: 1.5rem; }
         .metric-box { 
           flex: 1; padding: 1.5rem; background: rgba(255,255,255,0.02); 
@@ -159,7 +157,6 @@ export function Hero() {
         
         .card-content { padding: 2.5rem; display: flex; flex-direction: column; gap: 3rem; }
 
-        /* Horizontal Pipeline */
         .horizontal-pipeline { display: flex; align-items: center; justify-content: space-between; position: relative; }
         .pipe-step { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; position: relative; z-index: 2; flex: 1; }
         .step-icon-wrap { 
@@ -177,7 +174,6 @@ export function Hero() {
         }
         .pipe-connector.completed { background: linear-gradient(90deg, var(--brand-primary), transparent); }
 
-        /* Status Grid - Side by Side internal cards */
         .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .status-item { 
           display: flex; align-items: center; gap: 1rem; padding: 1.25rem; 
